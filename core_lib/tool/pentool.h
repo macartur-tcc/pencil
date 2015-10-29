@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PENTOOL_H
 #define PENTOOL_H
 

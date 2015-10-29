@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUA_ZIPNEWINFO_H
 #define QUA_ZIPNEWINFO_H
 

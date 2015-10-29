@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PENCILSETTINGS_H
 #define PENCILSETTINGS_H
 

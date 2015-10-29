@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLORGRIDITEM_H
 #define COLORGRIDITEM_H
 

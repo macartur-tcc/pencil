@@ -1,3 +1,4 @@
+#pragma once
 #ifndef KEYCAPTURELINEEDIT_H
 #define KEYCAPTURELINEEDIT_H
 

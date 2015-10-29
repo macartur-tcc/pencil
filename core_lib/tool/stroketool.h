@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STROKETOOL_H
 #define STROKETOOL_H
 

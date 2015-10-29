@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUACRC32_H
 #define QUACRC32_H
 

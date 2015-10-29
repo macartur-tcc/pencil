@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BASEDOCKWIDGET_H
 #define BASEDOCKWIDGET_H
 

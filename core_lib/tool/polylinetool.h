@@ -1,3 +1,4 @@
+#pragma once
 #ifndef POLYLINETOOL_H
 #define POLYLINETOOL_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLORGRID_H
 #define COLORGRID_H
 

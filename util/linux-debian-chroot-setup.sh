@@ -15,7 +15,7 @@ case ${MACHINE_TYPE} in
 	*)
 		ARCH=${MACHINE_TYPE};;
 esac
-if [[ $ARCH == 'i386' ]];then
+if [[ $ARCH == 'i386' ]] then
 	SETARCH='linux32'
 else
 	SETARCH='linux64'

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BASEMANAGER_H
 #define BASEMANAGER_H
 

@@ -1,3 +1,4 @@
+#pragma once
 /****************************************************************************
 **
 ** Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).

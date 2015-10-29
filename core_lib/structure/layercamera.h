@@ -1,3 +1,4 @@
+#pragma once
 /*
 
 Pencil - Traditional Animation Software

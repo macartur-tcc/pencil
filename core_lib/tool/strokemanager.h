@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STROKEMANAGER_H
 #define STROKEMANAGER_H
 

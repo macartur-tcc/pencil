@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PLAYBACKMANAGER_H
 #define PLAYBACKMANAGER_H
 

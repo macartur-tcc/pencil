@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUA_ZIPFILE_H
 #define QUA_ZIPFILE_H
 

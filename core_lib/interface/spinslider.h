@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SPINSLIDER_H
 #define SPINSLIDER_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PENCILTOOL_H
 #define PENCILTOOL_H
 

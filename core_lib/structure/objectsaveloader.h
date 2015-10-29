@@ -1,3 +1,4 @@
+#pragma once
 #ifndef OBJECTSAVELOADER_H
 #define OBJECTSAVELOADER_H
 

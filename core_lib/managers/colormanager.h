@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLORMANAGER_H
 #define COLORMANAGER_H
 

@@ -1,3 +1,4 @@
+#pragma once
 /* crypt.h -- base code for crypt/uncrypt ZIPfile
 
 

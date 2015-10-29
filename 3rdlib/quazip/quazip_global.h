@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUAZIP_GLOBAL_H
 #define QUAZIP_GLOBAL_H
 

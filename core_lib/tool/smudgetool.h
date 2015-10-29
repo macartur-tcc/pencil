@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SMUDGETOOL_H
 #define SMUDGETOOL_H
 

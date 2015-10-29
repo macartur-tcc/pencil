@@ -1,3 +1,4 @@
+#pragma once
 #ifndef RECENTFILEMENU_H
 #define RECENTFILEMENU_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ERASERTOOL_H
 #define ERASERTOOL_H
 

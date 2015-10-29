@@ -1,3 +1,4 @@
+#pragma once
 #ifndef VIEWMANAGER_H
 #define VIEWMANAGER_H
 

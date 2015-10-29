@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BASETOOL_H
 #define BASETOOL_H
 

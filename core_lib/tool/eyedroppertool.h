@@ -1,3 +1,4 @@
+#pragma once
 #ifndef EYEDROPPERTOOL_H
 #define EYEDROPPERTOOL_H
 

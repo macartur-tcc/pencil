@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUAADLER32_H
 #define QUAADLER32_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef AUTOTEST_H
 #define AUTOTEST_H
 

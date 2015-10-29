@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BLITRECT_H
 #define BLITRECT_H
 

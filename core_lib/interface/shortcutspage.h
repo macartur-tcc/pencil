@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SHORTCUTSPAGE_H
 #define SHORTCUTSPAGE_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BACKUPELEMENT_H
 #define BACKUPELEMENT_H
 

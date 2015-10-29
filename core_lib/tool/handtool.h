@@ -1,3 +1,4 @@
+#pragma once
 #ifndef HANDTOOL_H
 #define HANDTOOL_H
 

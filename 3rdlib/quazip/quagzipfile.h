@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUAZIP_QUAGZIPFILE_H
 #define QUAZIP_QUAGZIPFILE_H
 

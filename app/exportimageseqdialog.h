@@ -1,3 +1,4 @@
+#pragma once
 #ifndef EXPORTIMAGESEQDIALOG_H
 #define EXPORTIMAGESEQDIALOG_H
 

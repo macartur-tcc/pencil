@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BUCKETTOOL_H
 #define BUCKETTOOL_H
 

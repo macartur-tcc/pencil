@@ -1,3 +1,4 @@
+#pragma once
 #ifndef KeyFrame_H
 #define KeyFrame_H
 

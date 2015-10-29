@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUAZIP_QUAZIODEVICE_H
 #define QUAZIP_QUAZIODEVICE_H
 

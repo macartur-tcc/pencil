@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MOVETOOL_H
 #define MOVETOOL_H
 

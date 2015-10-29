@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QUACHECKSUM32_H
 #define QUACHECKSUM32_H
 

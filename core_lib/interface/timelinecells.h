@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TIMELINECELLS_H
 #define TIMELINECELLS_H
 

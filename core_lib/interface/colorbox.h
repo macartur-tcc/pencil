@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLORBOX_H
 #define COLORBOX_H
 

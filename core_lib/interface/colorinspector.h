@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLORSPINBOXGROUP_H
 #define COLORSPINBOXGROUP_H
 

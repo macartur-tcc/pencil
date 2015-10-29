@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TIMELINE2_H
 #define TIMELINE2_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TOOLMANAGER_H
 #define TOOLMANAGER_H
 

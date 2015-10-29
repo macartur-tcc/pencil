@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PENCILDEF_H
 #define PENCILDEF_H
 

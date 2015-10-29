@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SELECTTOOL_H
 #define SELECTTOOL_H
 

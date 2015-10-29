@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PENCILERROR_H
 #define PENCILERROR_H
 

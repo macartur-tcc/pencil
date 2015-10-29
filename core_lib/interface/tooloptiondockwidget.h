@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TOOLOPTIONDOCKWIDGET_H
 #define TOOLOPTIONDOCKWIDGET_H
 
