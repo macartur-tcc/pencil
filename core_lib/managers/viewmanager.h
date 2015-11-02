@@ -5,13 +5,15 @@
 #include "basemanager.h"
 
 
+class ViewManagerImpl;
 class ViewManager : public BaseManager
 {
     Q_OBJECT
 public:
     explicit ViewManager(QObject *parent = 0);
+    ~ViewManager();
     bool init() override;
-    
+
     QTransform getView();
     void resetView();
 
@@ -24,37 +26,25 @@ public:
     QPainterPath mapCanvasToScreen( const QPainterPath& path );
     QPainterPath mapScreenToCanvas( const QPainterPath& path );
 
-    QPointF translation() { return mTranslate; }
+    QPointF translation();
     void translate( float dx, float dy );
     void translate( QPointF offset );
 
-    float rotation() { return mRotate; }
+    float rotation();
     void rotate( float degree );
 
-    float scaling() { return mScale; }
+    float scaling();
     void scale( float scaleValue );
 
-    void flipHorizontal( bool b ) { mIsFlipHorizontal = b; }
-    void flipVertical( bool b ){ mIsFlipVertical = b; }
-    bool isFlipHorizontal() { return mIsFlipHorizontal; }
-    bool isFlipVertical() { return mIsFlipVertical; }
+    void flipHorizontal( bool b );
+    void flipVertical( bool b );
+    bool isFlipHorizontal();
+    bool isFlipVertical();
 
     void setCanvasSize( QSize size );
 
 private:
-    QTransform createViewTransform();
-
-    QTransform mView;
-    QTransform mCentre;
-
-    QPointF mTranslate;
-    float mRotate = 0.f;
-    float mScale = 1.f;
-
-    QSize mCanvasSize = { 1, 1 };
-
-    bool mIsFlipHorizontal = false;
-    bool mIsFlipVertical = false;
+    ViewManagerImpl *m_impl;
 };
 
 #endif // VIEWMANAGER_H

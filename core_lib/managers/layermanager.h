@@ -4,6 +4,7 @@
 #include "basemanager.h"
 
 class Layer;
+class LayerManagerImpl;
 
 class LayerManager : public BaseManager
 {
@@ -41,7 +42,7 @@ Q_SIGNALS:
     void layerCountChanged( int count );
 
 private:
-    int mCurrentLayerIndex = 0; // the current layer to be edited/displayed
+    LayerManagerImpl * m_impl;
 };
 
 #endif

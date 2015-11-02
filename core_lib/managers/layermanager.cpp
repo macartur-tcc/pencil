@@ -3,9 +3,32 @@
 #include "layerimage.h"
 #include "layermanager.h"
 
+class LayerManagerImpl
+{
+public:
+    LayerManagerImpl();
+    void set_CurrentLayerIndex(int index);
+    int get_CurrentLayerIndex();
+private:
+    int mCurrentLayerIndex = 0; // the current layer to be edited/displayed
+};
+
+LayerManagerImpl::LayerManagerImpl()
+  : mCurrentLayerIndex(0)
+{
+}
+void LayerManagerImpl::set_CurrentLayerIndex(int index)
+{
+  this->mCurrentLayerIndex = index;
+}
+
+int LayerManagerImpl::get_CurrentLayerIndex()
+{
+  return this->mCurrentLayerIndex;
+}
 
 LayerManager::LayerManager( QObject* pParent )
-    : BaseManager( pParent )
+    : BaseManager( pParent ), m_impl(new LayerManagerImpl())
 {
 }
 
@@ -28,38 +51,38 @@ Layer* LayerManager::currentLayer( int incr )
 {
     Q_ASSERT( editor()->object() != NULL );
 
-    return editor()->object()->getLayer( mCurrentLayerIndex + incr );
+    return editor()->object()->getLayer( this->m_impl->get_CurrentLayerIndex() + incr );
 }
 
 int LayerManager::currentLayerIndex()
 {
-    return mCurrentLayerIndex;
+    return this->m_impl->get_CurrentLayerIndex();
 }
 
 void LayerManager::setCurrentLayer( int layerIndex )
 {
-	if ( mCurrentLayerIndex != layerIndex )
+	if ( this->m_impl->get_CurrentLayerIndex() != layerIndex )
 	{
-		mCurrentLayerIndex = layerIndex;
-		Q_EMIT currentLayerChanged( mCurrentLayerIndex );
+    this->m_impl->set_CurrentLayerIndex( layerIndex );
+		Q_EMIT currentLayerChanged( this->m_impl->get_CurrentLayerIndex() );
 	}
 }
 
 void LayerManager::gotoNextLayer()
 {
-    if ( mCurrentLayerIndex < editor()->object()->getLayerCount() - 1 )
+    if ( this->m_impl->get_CurrentLayerIndex() < editor()->object()->getLayerCount() - 1 )
     {
-        mCurrentLayerIndex += 1;
-		emit currentLayerChanged( mCurrentLayerIndex );
+        this->m_impl->set_CurrentLayerIndex( this->m_impl->get_CurrentLayerIndex() + 1);
+    		emit currentLayerChanged( this->m_impl->get_CurrentLayerIndex() );
     }
 }
 
 void LayerManager::gotoPreviouslayer()
 {
-    if ( mCurrentLayerIndex > 0 )
+    if ( this->m_impl->get_CurrentLayerIndex() > 0 )
     {
-        mCurrentLayerIndex -= 1;
-		emit currentLayerChanged( mCurrentLayerIndex );
+        this->m_impl->set_CurrentLayerIndex( this->m_impl->get_CurrentLayerIndex() - 1);
+		    emit currentLayerChanged( this->m_impl->get_CurrentLayerIndex() );
     }
 }
 

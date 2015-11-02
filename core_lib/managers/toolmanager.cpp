@@ -14,32 +14,54 @@
 #include "editor.h"
 #include "pencilsettings.h"
 
-
-ToolManager::ToolManager(QObject* parent ) 
-    : BaseManager( parent )
-    , m_pCurrentTool( nullptr )
-    , m_eTabletBackupTool( INVALID_TOOL )
+class ToolManagerImpl
 {
+public:
+    ToolManagerImpl(BaseTool* currentTool=nullptr,
+                    ToolType eTabletBackupTool= INVALID_TOOL,
+                    bool isSwitchedToEraser = false);
+
+    BaseTool* m_pCurrentTool;
+    ToolType  m_eTabletBackupTool;
+    bool isSwitchedToEraser;
+    QHash<ToolType, BaseTool*> m_toolSetHash;
+};
+
+ToolManagerImpl::ToolManagerImpl(BaseTool* currentTool,
+                                 ToolType eTabletBackupTool,
+                                 bool isSwitchedToEraser)
+  : m_pCurrentTool(currentTool), m_eTabletBackupTool(eTabletBackupTool),
+    isSwitchedToEraser(isSwitchedToEraser)
+{
+}
+
+ToolManager::ToolManager(QObject* parent )
+    : BaseManager( parent ), m_impl(new ToolManagerImpl())
+{
+}
+ToolManager::~ToolManager()
+{
+  delete m_impl;
 }
 
 
 bool ToolManager::init()
 {
-    isSwitchedToEraser = false;
+    this->m_impl->isSwitchedToEraser = false;
 
-    m_toolSetHash.insert( PEN, new PenTool );
-    m_toolSetHash.insert( PENCIL, new PencilTool );
-    m_toolSetHash.insert( BRUSH, new BrushTool );
-    m_toolSetHash.insert( ERASER, new EraserTool );
-    m_toolSetHash.insert( BUCKET, new BucketTool );
-    m_toolSetHash.insert( EYEDROPPER, new EyedropperTool );
-    m_toolSetHash.insert( HAND, new HandTool );
-    m_toolSetHash.insert( MOVE, new MoveTool );
-    m_toolSetHash.insert( POLYLINE, new PolylineTool );
-    m_toolSetHash.insert( SELECT, new SelectTool );
-    m_toolSetHash.insert( SMUDGE, new SmudgeTool );
+    this->m_impl->m_toolSetHash.insert( PEN, new PenTool );
+    this->m_impl->m_toolSetHash.insert( PENCIL, new PencilTool );
+    this->m_impl->m_toolSetHash.insert( BRUSH, new BrushTool );
+    this->m_impl->m_toolSetHash.insert( ERASER, new EraserTool );
+    this->m_impl->m_toolSetHash.insert( BUCKET, new BucketTool );
+    this->m_impl->m_toolSetHash.insert( EYEDROPPER, new EyedropperTool );
+    this->m_impl->m_toolSetHash.insert( HAND, new HandTool );
+    this->m_impl->m_toolSetHash.insert( MOVE, new MoveTool );
+    this->m_impl->m_toolSetHash.insert( POLYLINE, new PolylineTool );
+    this->m_impl->m_toolSetHash.insert( SELECT, new SelectTool );
+    this->m_impl->m_toolSetHash.insert( SMUDGE, new SmudgeTool );
 
-    foreach( BaseTool* pTool, m_toolSetHash.values() )
+    foreach( BaseTool* pTool, this->m_impl->m_toolSetHash.values() )
     {
         pTool->initialize( editor(), editor()->getScribbleArea() );
     }
@@ -47,10 +69,13 @@ bool ToolManager::init()
     return true;
 }
 
+BaseTool* ToolManager::currentTool(){
+ return this->m_impl->m_pCurrentTool;
+}
 
 BaseTool* ToolManager::getTool(ToolType eToolType)
 {
-    return m_toolSetHash[ eToolType ];
+    return this->m_impl->m_toolSetHash[ eToolType ];
 }
 
 void ToolManager::setDefaultTool()
@@ -60,27 +85,27 @@ void ToolManager::setDefaultTool()
     ToolType defaultToolType = PENCIL;
 
     setCurrentTool(defaultToolType);
-    m_eTabletBackupTool = defaultToolType;
+    this->m_impl->m_eTabletBackupTool = defaultToolType;
 }
 
 void ToolManager::setCurrentTool( ToolType eToolType )
 {
-    m_pCurrentTool = getTool( eToolType );
+    this->m_impl->m_pCurrentTool = getTool( eToolType );
 
-    setWidth( m_pCurrentTool->properties.width );
-    setFeather( m_pCurrentTool->properties.feather );
-    setPressure( m_pCurrentTool->properties.pressure );
-    setPreserveAlpha( m_pCurrentTool->properties.preserveAlpha );
-    setInvisibility( m_pCurrentTool->properties.invisibility ); // by definition the pencil is invisible in vector mode
+    setWidth( this->m_impl->m_pCurrentTool->properties.width );
+    setFeather( this->m_impl->m_pCurrentTool->properties.feather );
+    setPressure( this->m_impl->m_pCurrentTool->properties.pressure );
+    setPreserveAlpha( this->m_impl->m_pCurrentTool->properties.preserveAlpha );
+    setInvisibility( this->m_impl->m_pCurrentTool->properties.invisibility ); // by definition the pencil is invisible in vector mode
 
 
     emit toolChanged( eToolType );
-    emit displayToolOptions(m_pCurrentTool->m_enabledProperties);
+    emit displayToolOptions(this->m_impl->m_pCurrentTool->m_enabledProperties);
 }
 
 void ToolManager::cleanupAllToolsData()
 {
-    foreach ( BaseTool* pTool, m_toolSetHash.values() )
+    foreach ( BaseTool* pTool, this->m_impl->m_toolSetHash.values() )
     {
         pTool->clear();
     }
@@ -145,24 +170,24 @@ void ToolManager::setPressure( int isPressureOn )
 
 void ToolManager::tabletSwitchToEraser()
 {
-    if (!isSwitchedToEraser)
+    if (!this->m_impl->isSwitchedToEraser)
     {
-        isSwitchedToEraser = true;
+        this->m_impl->isSwitchedToEraser = true;
 
-        m_eTabletBackupTool = m_pCurrentTool->type();
+        this->m_impl->m_eTabletBackupTool = this->m_impl->m_pCurrentTool->type();
         setCurrentTool( ERASER );
     }
 }
 
 void ToolManager::tabletRestorePrevTool()
 {
-    if ( isSwitchedToEraser )
+    if ( this->m_impl->isSwitchedToEraser )
     {
-        isSwitchedToEraser = false;
-        if ( m_eTabletBackupTool == INVALID_TOOL )
+        this->m_impl->isSwitchedToEraser = false;
+        if ( this->m_impl->m_eTabletBackupTool == INVALID_TOOL )
         {
-            m_eTabletBackupTool = PENCIL;
+            this->m_impl->m_eTabletBackupTool = PENCIL;
         }
-        setCurrentTool( m_eTabletBackupTool );
+        setCurrentTool( this->m_impl->m_eTabletBackupTool );
     }
 }

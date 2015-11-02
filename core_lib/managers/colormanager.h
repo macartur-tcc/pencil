@@ -5,7 +5,7 @@
 #include "basemanager.h"
 
 
-
+class ColorManagerImpl;
 class ColorManager : public BaseManager
 {
     Q_OBJECT
@@ -24,8 +24,7 @@ Q_SIGNALS:
     void colorNumberChanged(int);
 
 private:
-    QColor mCurrentFrontColor = { 0, 0, 0 };
-    int mCurrentColorIndex = 0;
+    ColorManagerImpl *m_impl;
 };
 
 #endif // COLORMANAGER_H

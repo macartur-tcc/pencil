@@ -8,16 +8,17 @@
 
 class ScribbleArea;
 
-
+class ToolManagerImpl;
 class ToolManager : public BaseManager
 {
     Q_OBJECT
 public:
     explicit ToolManager( QObject* parent );
-    
+    ~ToolManager();
+
     bool init() override;
 
-    BaseTool* currentTool() { return m_pCurrentTool; }
+    BaseTool* currentTool();
     BaseTool* getTool( ToolType eToolType );
     void      setDefaultTool();
     void      setCurrentTool( ToolType eToolType );
@@ -47,10 +48,7 @@ public slots:
     void setPressure( int );
 
 private:
-    BaseTool* m_pCurrentTool;
-    ToolType  m_eTabletBackupTool;
-    bool isSwitchedToEraser;
-    QHash<ToolType, BaseTool*> m_toolSetHash;
+    ToolManagerImpl * m_impl;
 
 };
 
